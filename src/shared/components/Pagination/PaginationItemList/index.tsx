@@ -23,14 +23,13 @@ const PaginationList: FC<Props> = ({
         gap: "4px",
       }}
     >
-      {paginationItems.map((item, index) => (
-        <li key={index}>
-          <PaginationItemControl
-            item={item}
-            activePage={activePage}
-            handlePageClick={handlePageClick}
-          />
-        </li>
+      {paginationItems.map((item) => (
+        <PaginationItemControl
+          key={item}
+          item={item}
+          activePage={activePage}
+          handlePageClick={handlePageClick}
+        />
       ))}
     </ul>
   );

@@ -42,15 +42,17 @@ const usePagination = (
   };
 
   const handlePrevious = () => {
-    if (activePage > 1) {
-      handlePageChange(activePage - 1);
+    if (activePage <= 1) {
+      return;
     }
+    handlePageChange(activePage - 1);
   };
 
   const handleNext = () => {
-    if (activePage < totalPages) {
-      handlePageChange(activePage + 1);
+    if (activePage >= totalPages) {
+      return;
     }
+    handlePageChange(activePage + 1);
   };
 
   const handlePageChange = (page: number) => {

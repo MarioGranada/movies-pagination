@@ -14,14 +14,14 @@ const PaginationItemControl: FC<Props> = ({
 }) => {
   if (item === "ell" || item === "ell-1" || item === "ell-2") {
     return (
-      <li key={item}>
+      <li>
         <span style={{ padding: "8px 12px", color: "#666" }}>...</span>
       </li>
     );
   }
 
   return (
-    <li key={item}>
+    <li>
       <button
         onClick={() => handlePageClick(item)}
         style={{
