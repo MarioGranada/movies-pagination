@@ -1,23 +1,16 @@
 import customFetch from "./customFetch";
 
 const searchMovies = async (
-  query: string,
+  query: QueryParams = {},
   abortController: AbortController
 ) => {
   const baseUrl = "https://api.themoviedb.org/3/search/movie";
-
-  const queryParams = {
-    query,
-    include_adult: false,
-    language: "en-US",
-    page: 1,
-  };
 
   const options = {
     signal: abortController.signal,
   };
 
-  const data = await customFetch(baseUrl, queryParams, options);
+  const data = await customFetch(baseUrl, query, options);
 
   return data;
 };

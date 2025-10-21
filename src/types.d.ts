@@ -1,4 +1,6 @@
-type QueryParams = Record<string, string | number | boolean>;
+type Query = { query?: string; page?: number };
+
+type QueryParams = Query & Record<string, string | number | boolean>;
 
 type Movie = {
   adult: boolean;

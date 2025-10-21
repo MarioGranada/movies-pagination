@@ -10,7 +10,7 @@ const Input: FC<Props> = ({ onSearch }) => {
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      setDebouncedValue(value);
+      setDebouncedValue(value.trim());
     }, 500);
 
     return () => {
