@@ -19,6 +19,10 @@ const Input: FC<Props> = ({ onSearch }) => {
   }, [value]);
 
   useEffect(() => {
+    if (debouncedValue.length < 3) {
+      return;
+    }
+
     onSearch?.(debouncedValue);
   }, [onSearch, debouncedValue]);
 

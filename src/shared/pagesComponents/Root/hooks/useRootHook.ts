@@ -1,10 +1,18 @@
 import { useState } from "react";
 import prepareQuery from "../../../utils/prepareQuery";
 import searchMovies from "../../../helpers/searchMovies";
+import calculateFetchPage from "../utils/calculateFetchPage";
+import getResultsSlice from "../utils/getResultsSlice";
 
 const useRootHook = () => {
   const abortController = new AbortController();
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [apiPage, setApiPage] = useState<number>(1);
+  const [selectedPage, setSelectedPage] = useState<number>(1);
+  const [movieSearch, setMovieSearch] = useState<string>("");
+  const [totalResults, setTotalResults] = useState<number>(0);
+
+  const shownMovies = getResultsSlice(movies, selectedPage);
 
   const fetchMovies = async (
     queryParams: QueryParams,
@@ -12,14 +20,40 @@ const useRootHook = () => {
   ) => {
     const query = prepareQuery(queryParams);
     const data = await searchMovies(query, abortController);
-    setMovies(data.results);
+
+    console.log("in here oe data", { data });
+
+    return data;
   };
 
   const onMovieSearch = async (value: string) => {
     if (!value) {
       return;
     }
-    await fetchMovies({ query: value, page: 1 }, abortController);
+    setMovieSearch(value);
+    const data = await fetchMovies({ query: value }, abortController);
+
+    setMovies(data.results);
+    setTotalResults(data.total_results);
+  };
+
+  const onPageChange = async (page: number) => {
+    if (page === selectedPage) {
+      return;
+    }
+
+    const pageToFetch = calculateFetchPage(page);
+
+    if (pageToFetch !== apiPage) {
+      const data = await fetchMovies(
+        { query: movieSearch, page: pageToFetch },
+        abortController
+      );
+      setMovies(data.results);
+      setApiPage(pageToFetch);
+    }
+
+    setSelectedPage(page);
   };
 
   return {
@@ -28,6 +62,9 @@ const useRootHook = () => {
     onMovieSearch,
     fetchMovies,
     abortController,
+    onPageChange,
+    shownMovies,
+    totalResults,
   };
 };
 

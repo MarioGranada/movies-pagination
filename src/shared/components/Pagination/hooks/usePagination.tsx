@@ -56,6 +56,10 @@ const usePagination = (
   };
 
   const handlePageChange = (page: number) => {
+    if (page === activePage) {
+      return;
+    }
+
     setActivePage(page);
     onPageChange?.(page);
   };
