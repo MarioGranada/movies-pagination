@@ -28,6 +28,7 @@ const Input: FC<Props> = ({ onSearch }) => {
 
   return (
     <input
+      id="movie-search"
       type="text"
       onChange={(e) => setValue(e.target.value)}
       value={value}

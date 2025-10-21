@@ -24,6 +24,10 @@ const Pagination: FC<Props> = ({
     handleNext,
   } = usePagination(totalResults, itemsPerPage, onPageChange);
 
+  if (!totalPages) {
+    return null;
+  }
+
   return (
     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
       <PaginationControl

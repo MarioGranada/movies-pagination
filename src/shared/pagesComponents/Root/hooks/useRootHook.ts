@@ -13,6 +13,7 @@ const useRootHook = () => {
   const [totalResults, setTotalResults] = useState<number>(0);
 
   const shownMovies = getResultsSlice(movies, selectedPage);
+  const totalPages = Math.ceil(totalResults / 10);
 
   const fetchMovies = async (
     queryParams: QueryParams,
@@ -65,6 +66,8 @@ const useRootHook = () => {
     onPageChange,
     shownMovies,
     totalResults,
+    totalPages,
+    movieSearch,
   };
 };
 

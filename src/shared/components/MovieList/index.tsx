@@ -5,6 +5,10 @@ type Props = {
 };
 
 const MovieList: FC<Props> = ({ movies = [] }) => {
+  if (!movies.length) {
+    return null;
+  }
+
   return (
     <ul>
       {movies.map((movie) => (

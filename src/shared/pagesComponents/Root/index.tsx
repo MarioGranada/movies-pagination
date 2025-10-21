@@ -5,15 +5,24 @@ import useRootHook from "./hooks/useRootHook";
 import Pagination from "../../components/Pagination";
 
 const Root: FC = () => {
-  const { onMovieSearch, onPageChange, shownMovies, totalResults } =
-    useRootHook();
+  const {
+    onMovieSearch,
+    onPageChange,
+    shownMovies,
+    totalResults,
+    movieSearch,
+  } = useRootHook();
 
   return (
     <>
       <h1>RootPage</h1>
       <Input onSearch={onMovieSearch} />
       <MovieList movies={shownMovies} />
-      <Pagination totalResults={totalResults} onPageChange={onPageChange} />
+      <Pagination
+        key={movieSearch}
+        totalResults={totalResults}
+        onPageChange={onPageChange}
+      />
     </>
   );
 };
