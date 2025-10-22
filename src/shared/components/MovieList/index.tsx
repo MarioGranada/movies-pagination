@@ -1,4 +1,7 @@
 import { type FC } from "react";
+import MoviePoster from "./MoviePoster";
+
+import styles from "./MovieList.module.scss";
 
 type Props = {
   movies?: Movie[];
@@ -10,9 +13,9 @@ const MovieList: FC<Props> = ({ movies = [] }) => {
   }
 
   return (
-    <ul>
+    <ul className={styles.container}>
       {movies.map((movie) => (
-        <li key={movie.id}>{movie.title}</li>
+        <MoviePoster key={movie.id} movie={movie} />
       ))}
     </ul>
   );

@@ -15,7 +15,6 @@ const Root: FC = () => {
 
   return (
     <>
-      <h1>RootPage</h1>
       <Input onSearch={onMovieSearch} />
       <MovieList movies={shownMovies} />
       <Pagination

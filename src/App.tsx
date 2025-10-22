@@ -1,8 +1,12 @@
-import "./App.css";
+import Layout from "./shared/components/Layout/Layout";
 import RootPage from "./Pages";
 
 function App() {
-  return <RootPage />;
+  return (
+    <Layout>
+      <RootPage />
+    </Layout>
+  );
 }
 
 export default App;

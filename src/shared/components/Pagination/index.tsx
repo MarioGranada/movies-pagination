@@ -1,4 +1,5 @@
 import { type FC } from "react";
+import styles from "./Pagination.module.scss";
 import usePagination from "./hooks/usePagination";
 import PaginationControl from "./PaginationControl";
 import PaginationList from "./PaginationItemList";
@@ -29,7 +30,7 @@ const Pagination: FC<Props> = ({
   }
 
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+    <div className={styles.pagination}>
       <PaginationControl
         onClick={handlePrevious}
         type="previous"
