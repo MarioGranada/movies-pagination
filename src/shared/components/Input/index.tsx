@@ -27,13 +27,16 @@ const Input: FC<Props> = ({ onSearch }) => {
   }, [onSearch, debouncedValue]);
 
   return (
-    <input
-      id="movie-search"
-      className="moon-input"
-      type="text"
-      onChange={(e) => setValue(e.target.value)}
-      value={value}
-    />
+    <>
+      <input
+        id="movie-search"
+        className="moon-input"
+        type="text"
+        onChange={(e) => setValue(e.target.value)}
+        value={value}
+      />
+      <div className="moon-form-hint">Type at least 3 characters to search</div>
+    </>
   );
 };
 

@@ -1,0 +1,45 @@
+.moon-form-hint {
+  font-family: $font-default;
+  font-weight: $font-weight-medium;
+  font-size: $style-text-sm-font-size;
+  line-height: $style-text-sm-line-height;
+  color: $color-text-secondary;
+}
+
+.moon-form-group-error :where(.moon-form-hint) {
+  color: $color-text-negative;
+}
+
+.moon-form-group-error :where(input, textarea, select) {
+  box-shadow: inset 0 0 0 $spacing-stroke-1 $color-border-negative;
+}
+
+.moon-form-group-error :where(input, textarea, select:hover),
+.moon-form-group-error :where(input, textarea, select:focus) {
+  box-shadow: inset 0 0 0 $spacing-stroke-1 $color-border-negative;
+}
+
+.moon-form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: $spacing-space-8;
+  opacity: 1;
+}
+
+.moon-form-group :where(label) {
+  font-family: $font-default;
+  font-weight: $font-weight-medium;
+  font-size: $style-text-md-font-size;
+  line-height: $style-text-md-line-height;
+  color: $color-text-primary;
+}
+
+.moon-form-group :where(.required) {
+  color: $color-text-negative;
+}
+
+.moon-form-group:has(:disabled) label,
+.moon-form-group:has(:disabled) .moon-form-hint {
+  opacity: $style-opacity-disabled;
+}

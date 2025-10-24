@@ -1,5 +1,5 @@
 import React, { type ReactNode } from "react";
-import styles from "./Layout.module.scss";
+import styles from "./layout.module.scss";
 
 interface Props {
   children: ReactNode;
@@ -7,9 +7,10 @@ interface Props {
 
 const Layout: React.FC<Props> = ({ children }) => {
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>{children}</main>
-    </div>
+    <main className={styles.container}>
+      <h1 className={styles.title}>The Movie Vault</h1>
+      {children}
+    </main>
   );
 };
 
