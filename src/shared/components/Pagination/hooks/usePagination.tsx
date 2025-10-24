@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { PaginationItem } from "../types";
+import type { PaginationItemContent } from "../types";
 
 const usePagination = (
   totalResults: number,
@@ -9,20 +9,20 @@ const usePagination = (
   const [activePage, setActivePage] = useState<number>(1);
   const totalPages = Math.ceil(totalResults / itemsPerPage);
 
-  const generatePaginationItems = (): PaginationItem[] => {
+  const generatePaginationItems = (): PaginationItemContent[] => {
     if (totalPages <= 7) {
       return Array.from({ length: totalPages }, (_, i) => i + 1);
     }
 
-    if (activePage < 5) {
-      return [...Array.from({ length: 4 }, (_, i) => i + 1), "ell", totalPages];
+    if (activePage < 6) {
+      return [...Array.from({ length: 5 }, (_, i) => i + 1), "ell", totalPages];
     }
 
-    if (activePage > totalPages - 4) {
+    if (activePage > totalPages - 5) {
       return [
         1,
         "ell",
-        ...Array.from({ length: 4 }, (_, i) => totalPages - 3 + i),
+        ...Array.from({ length: 5 }, (_, i) => totalPages - 4 + i),
       ];
     }
 
