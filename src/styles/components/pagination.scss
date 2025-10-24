@@ -86,3 +86,10 @@
   cursor: not-allowed;
   opacity: $style-opacity-disabled;
 }
+
+.moon-pagination
+  :not(:disabled):not([aria-disabled="true"]):hover:where(
+    .moon-pagination-control
+  ):after {
+  background-color: $color-background-hover;
+}
