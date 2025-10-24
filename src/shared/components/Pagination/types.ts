@@ -1,1 +1,1 @@
-export type PaginationItem = number | "ell" | "ell-1" | "ell-2";
+export type PaginationItemContent = number | "ell" | "ell-1" | "ell-2";

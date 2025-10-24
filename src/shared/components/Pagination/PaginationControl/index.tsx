@@ -9,18 +9,13 @@ type Props = {
 
 const PaginationControl: FC<Props> = ({ onClick, type, disabled }) => {
   return (
-    <button
+    <li
       onClick={onClick}
-      disabled={disabled}
-      style={{
-        padding: "8px 12px",
-        border: "1px solid #ccc",
-        backgroundColor: disabled ? "#f5f5f5" : "white",
-        cursor: disabled ? "not-allowed" : "pointer",
-      }}
+      className="moon-pagination-control"
+      aria-disabled={disabled}
     >
       {type === "previous" ? "<" : ">"}
-    </button>
+    </li>
   );
 };
 

@@ -1,7 +1,7 @@
 import { type FC } from "react";
 import usePagination from "./hooks/usePagination";
 import PaginationControl from "./PaginationControl";
-import PaginationList from "./PaginationItemList";
+import PaginationItem from "./PaginationItem";
 
 type Props = {
   totalResults: number;
@@ -29,23 +29,26 @@ const Pagination: FC<Props> = ({
   }
 
   return (
-    <div>
+    <ul className="moon-pagination">
       <PaginationControl
         onClick={handlePrevious}
         type="previous"
         disabled={activePage <= 1}
       />
-      <PaginationList
-        paginationItems={paginationItems}
-        activePage={activePage}
-        handlePageClick={handlePageClick}
-      />
+      {paginationItems.map((item) => (
+        <PaginationItem
+          key={item}
+          item={item}
+          activePage={activePage}
+          handlePageClick={handlePageClick}
+        />
+      ))}
       <PaginationControl
         onClick={handleNext}
         type="next"
         disabled={activePage >= totalPages}
       />
-    </div>
+    </ul>
   );
 };
 
