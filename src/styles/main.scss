@@ -3,19 +3,10 @@
 
 body.light-theme {
   @import "light";
-  @import "root-variables";
-
-  font-family: $font-default;
-
-  background-color: $color-background-primary;
-  color: $color-text-primary;
+  @import "./body";
 }
 
 body.dark-theme {
   @import "dark";
-  @import "root-variables";
-
-  font-family: $font-default;
-  background-color: $color-background-primary;
-  color: $color-text-primary;
+  @import "./body";
 }

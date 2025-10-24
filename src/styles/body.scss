@@ -1,0 +1,9 @@
+& {
+  @import "root-variables";
+  @import "./components/Input.scss";
+
+  font-family: $font-default;
+  background-color: $color-background-primary;
+  color: $color-text-primary;
+  padding: $spacing-space-24;
+}
