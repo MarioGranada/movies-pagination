@@ -1,11 +1,14 @@
 import Layout from "./shared/components/Layout/Layout";
 import RootPage from "./Pages";
+import MovieContextWrapper from "./shared/context/MovieContext/MovieContextWrapper";
 
 function App() {
   return (
-    <Layout>
-      <RootPage />
-    </Layout>
+    <MovieContextWrapper>
+      <Layout>
+        <RootPage />
+      </Layout>
+    </MovieContextWrapper>
   );
 }
 
