@@ -1,7 +1,8 @@
 import type { FC } from "react";
+import EmptyPoster from "../../EmptyPoster";
 
 type Props = {
-  src: string;
+  src?: string;
   alt: string;
 };
 
@@ -9,7 +10,7 @@ const PosterImage: FC<Props> = ({ src, alt }) => {
   if (!src) {
     return (
       <div className="posterImageContainer">
-        <img src="/placeholder.png" alt={alt} />
+        <EmptyPoster alt={alt} />
       </div>
     );
   }

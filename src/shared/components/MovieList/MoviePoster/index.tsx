@@ -11,14 +11,13 @@ const MoviePoster: FC<Props> = ({ movie }) => {
   const MovieCxt = useContext(MovieContext);
 
   if (!MovieCxt.config) {
-    return;
+    return null;
   }
 
   const { config, genres } = MovieCxt;
   const { images } = config;
   const { base_url, poster_sizes } = images;
   const posterSize = poster_sizes[1];
-  const posterUrl = `${base_url}${posterSize}${movie.poster_path}`;
   const {
     title,
     genre_ids,
@@ -27,7 +26,10 @@ const MoviePoster: FC<Props> = ({ movie }) => {
     vote_average,
     vote_count,
     overview,
+    poster_path,
   } = movie;
+
+  const posterUrl = poster_path && `${base_url}${posterSize}${poster_path}`;
 
   const genresList = genre_ids.length
     ? genre_ids.map((genre_id) => genres[genre_id]).join(", ")
