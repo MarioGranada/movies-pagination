@@ -26,6 +26,7 @@ const MoviePoster: FC<Props> = ({ movie }) => {
     release_date,
     vote_average,
     vote_count,
+    overview,
   } = movie;
 
   const genresList = genre_ids.length
@@ -35,12 +36,15 @@ const MoviePoster: FC<Props> = ({ movie }) => {
   return (
     <li>
       <PosterImage src={posterUrl} alt={title} />
-      {title}
-      <p>Genres: {genresList}</p>
-      <p>Popularity: {popularity}</p>
-      <p>Release Date: {formatDate(release_date)}</p>
-      <p>Vote Average: {vote_average}</p>
-      <p>Vote Count: {vote_count}</p>
+      <div>
+        {title}
+        <p>{genresList}</p>
+        <p>{overview}</p>
+        <p>{Math.ceil(popularity)} users reported watching this movie</p>
+        <p>Released at: {formatDate(release_date)}</p>
+        <p>{vote_average.toFixed(2)}/10</p>
+        <p>Voted by {vote_count} users</p>
+      </div>
     </li>
   );
 };
