@@ -11,7 +11,7 @@ const MovieList: FC<Props> = ({ movies = [] }) => {
   }
 
   return (
-    <ul>
+    <ul className="movieGrid">
       {movies.map((movie) => (
         <MoviePoster key={movie.id} movie={movie} />
       ))}

@@ -1,0 +1,172 @@
+// Movie poster container
+.moviePoster {
+  display: flex;
+  flex-direction: column;
+  border-radius: $component-button-radius-lg;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// Poster image container
+.posterImageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2/3; // Standard movie poster ratio
+  overflow: hidden;
+  background: $color-background-hover;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+// Movie details container
+.movieDetails {
+  padding: $spacing-space-16;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-space-8;
+
+  @media (min-width: $breakpoint-sm) {
+    padding: $spacing-space-20;
+    gap: $spacing-space-12;
+  }
+}
+
+// Movie title
+.movieTitle {
+  font-family: $font-default;
+  font-weight: $font-weight-bold;
+  font-size: $text-16;
+  line-height: $style-text-sm-line-height;
+  margin: 0 0 $spacing-space-8 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $style-text-lg-font-size;
+    line-height: $style-text-lg-line-height;
+  }
+}
+
+// Movie metadata (genres, dates, etc.)
+.movieMeta {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-space-6;
+  font-size: $style-text-sm-font-size;
+  line-height: $style-text-sm-line-height;
+  color: $color-text-secondary;
+
+  p {
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @media (min-width: $breakpoint-sm) {
+    gap: $spacing-space-8;
+  }
+}
+
+// Specific styling for different metadata types
+.genres {
+  font-weight: $font-weight-medium;
+}
+
+.popularity,
+.releaseDate {
+  font-size: $style-text-xs-font-size;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $style-text-sm-font-size;
+  }
+}
+
+// Rating specific styling
+.rating {
+  display: flex;
+  align-items: center;
+  gap: $spacing-space-8;
+  font-weight: $font-weight-medium;
+
+  .voteAverage {
+    font-size: $text-16;
+  }
+
+  .voteCount {
+    font-size: $style-text-xs-font-size;
+    color: $color-text-secondary;
+
+    &::before {
+      content: "(";
+    }
+
+    &::after {
+      content: " votes)";
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+// Error state for missing images
+.posterError {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $color-background-hover;
+  color: $color-text-secondary;
+  font-size: $style-text-sm-font-size;
+  text-align: center;
+  padding: $spacing-space-16;
+}
+
+// Responsive text scaling
+@media (max-width: $breakpoint-xs) {
+  .movieTitle {
+    font-size: $style-text-sm-font-size;
+    line-height: $style-text-sm-line-height;
+  }
+
+  .movieMeta {
+    font-size: $style-text-xs-font-size;
+    line-height: $style-text-xs-line-height;
+  }
+
+  .movieDetails {
+    padding: $spacing-space-12;
+    gap: $spacing-space-6;
+  }
+}

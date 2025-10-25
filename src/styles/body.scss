@@ -3,6 +3,8 @@
   @import "./components/input.scss";
   @import "./components/hint.scss";
   @import "./components/pagination.scss";
+  @import "./components/movieList.module.scss";
+  @import "./components/moviePoster.module.scss";
 
   font-family: $font-default;
   background-color: $color-background-primary;

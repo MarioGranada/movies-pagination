@@ -34,16 +34,20 @@ const MoviePoster: FC<Props> = ({ movie }) => {
     : "No data";
 
   return (
-    <li>
+    <li className="moviePoster">
       <PosterImage src={posterUrl} alt={title} />
-      <div>
-        {title}
-        <p>{genresList}</p>
-        <p>{overview}</p>
-        <p>{Math.ceil(popularity)} users reported watching this movie</p>
-        <p>Released at: {formatDate(release_date)}</p>
-        <p>{vote_average.toFixed(2)}/10</p>
-        <p>Voted by {vote_count} users</p>
+      <div className="movieDetails">
+        <h3 className="movieTitle">{title}</h3>
+        <div className="movieMeta">
+          <p className="genres">{genresList}</p>
+          <p>{overview}</p>
+          <p>{Math.ceil(popularity)} users reported watching this movie</p>
+          <p className="releaseDate">Released at: {formatDate(release_date)}</p>
+          <div className="rating">
+            <p className="voteAverage">{vote_average.toFixed(2)}/10</p>
+            <p className="voteCount">Voted by {vote_count} users</p>
+          </div>
+        </div>
       </div>
     </li>
   );

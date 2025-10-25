@@ -7,9 +7,17 @@ type Props = {
 
 const PosterImage: FC<Props> = ({ src, alt }) => {
   if (!src) {
-    return <img src="/placeholder.png" alt={alt} />;
+    return (
+      <div className="posterImageContainer">
+        <img src="/placeholder.png" alt={alt} />
+      </div>
+    );
   }
-  return <img src={src} alt={alt} />;
+  return (
+    <div className="posterImageContainer">
+      <img src={src} alt={alt} />
+    </div>
+  );
 };
 
 export default PosterImage;
