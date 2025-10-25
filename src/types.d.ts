@@ -18,3 +18,10 @@ type Movie = {
   vote_average: number;
   vote_count: number;
 };
+
+type Genre = {
+  id: number;
+  name: string;
+};
+
+type GenreMap = Record<number, string>;

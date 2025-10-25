@@ -1,13 +1,13 @@
 import { useEffect, useState, type FC } from "react";
 import customFetch from "../../helpers/customFetch";
-import MovieContext from ".";
+import MovieContext, { initContextValue } from ".";
 
 type Props = {
   children: React.ReactNode;
 };
 
 const MovieContextWrapper: FC<Props> = ({ children }) => {
-  const [moviesConfig, setMoviesConfig] = useState(null);
+  const [moviesConfig, setMoviesConfig] = useState(initContextValue);
   const url = "https://api.themoviedb.org/3/configuration";
 
   useEffect(() => {
@@ -19,10 +19,34 @@ const MovieContextWrapper: FC<Props> = ({ children }) => {
     const fetchConfig = async () => {
       const response = await customFetch(url, undefined, options);
       console.log("in here oe config", { response });
-      setMoviesConfig(response);
+      setMoviesConfig((prevState) => ({
+        ...prevState,
+        config: { ...response },
+      }));
+    };
+
+    const fetchGenres = async () => {
+      const genresUrl = "https://api.themoviedb.org/3/genre/movie/list";
+
+      const response = await customFetch(genresUrl, undefined, options);
+      console.log("in here oe genres", { response });
+      const { genres } = response;
+      const genresMap: GenreMap = {};
+
+      genres.forEach((genre: Genre) => {
+        genresMap[genre.id] = genre.name;
+      });
+
+      console.log("in here oe genresMap", { genresMap });
+
+      setMoviesConfig((prevState) => ({
+        ...prevState,
+        genres: genresMap,
+      }));
     };
 
     fetchConfig();
+    fetchGenres();
 
     return () => {
       abortController.abort();
