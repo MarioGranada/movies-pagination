@@ -6,7 +6,9 @@
   outline: none;
   border-color: transparent;
   align-items: center;
-  transition: box-shadow 150ms ease-in-out, opacity 150ms ease-in-out,
+  transition:
+    box-shadow 150ms ease-in-out,
+    opacity 150ms ease-in-out,
     background-color 150ms ease-in-out;
   height: $spacing-space-40;
   border-radius: $component-forms-radius-md;

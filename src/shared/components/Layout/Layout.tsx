@@ -8,7 +8,7 @@ interface Props {
 
 const Layout: React.FC<Props> = ({ children }) => {
   return (
-    <main className={styles.container}>
+    <main className={`light-theme ${styles.container}`}>
       <div className={styles.header}>
         <h1 className={styles.title}>The Movie Vault</h1>
         <div>
