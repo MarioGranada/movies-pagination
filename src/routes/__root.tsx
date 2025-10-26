@@ -15,7 +15,6 @@ const RootLayout = () => (
         <Outlet />
       </Layout>
     </MovieContextWrapper>
-
     <TanStackRouterDevtools />
   </>
 );
