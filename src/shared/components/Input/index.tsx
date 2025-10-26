@@ -2,9 +2,10 @@ import { useEffect, useState, type FC } from "react";
 
 type Props = Partial<HTMLInputElement> & {
   onSearch?: (value: string) => void;
+  classNames?: string;
 };
 
-const Input: FC<Props> = ({ onSearch }) => {
+const Input: FC<Props> = ({ onSearch, classNames }) => {
   const [value, setValue] = useState("");
   const [debouncedValue, setDebouncedValue] = useState("");
 
@@ -27,7 +28,7 @@ const Input: FC<Props> = ({ onSearch }) => {
   }, [onSearch, debouncedValue]);
 
   return (
-    <div className="moon-form-group">
+    <div className={`moon-form-group ${classNames}`}>
       <input
         id="movie-search"
         className="moon-input"

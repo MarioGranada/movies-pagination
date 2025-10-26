@@ -16,7 +16,7 @@ const Root: FC = () => {
 
   return (
     <section className={styles.container}>
-      <Input onSearch={onMovieSearch} />
+      <Input classNames={styles.input} onSearch={onMovieSearch} />
       <MovieList movies={shownMovies} />
       <Pagination
         key={movieSearch}
