@@ -65,7 +65,7 @@ const Movie: FC<Props> = ({ id }) => {
   const { base_url, poster_sizes, backdrop_sizes } = images;
   const backdropSize = backdrop_sizes.pop();
 
-  const posterSize = poster_sizes[1];
+  const posterSize = poster_sizes[3];
 
   const backdropUrl =
     backdrop_path && `${base_url}${backdropSize}${backdrop_path}`;
@@ -73,37 +73,67 @@ const Movie: FC<Props> = ({ id }) => {
   const posterUrl = poster_path && `${base_url}${posterSize}${poster_path}`;
 
   return (
-    <div>
-      <div>
+    <div className="movieContainer">
+      <div className="backdropSection">
         <PosterImage src={backdropUrl} alt={original_title} isBackdrop />
       </div>
 
       <div className="movieDetails">
-        <PosterImage src={posterUrl} alt={title} />
-        <h2 className="movieTitle">{title}</h2>
-        <p>Original Title: {original_title}</p>
-        <p>{tagline}</p>
-        <div className="movieMeta">
-          <p className="genres">
-            {genres.map((genre) => genre.name).join(", ")}
-          </p>
-          <p>{overview}</p>
-          <p>{Math.ceil(popularity)} users reported watching this movie</p>
-          <div className="rating">
-            <p className="voteAverage">{vote_average.toFixed(2)}/10</p>
-            <p className="voteCount">Voted by {vote_count} users</p>
+        <div className="movieData">
+          <div className="posterSection">
+            <PosterImage src={posterUrl} alt={title} />
+          </div>
+          <div className="movieInfo">
+            <h2 className="movieTitle">{title}</h2>
+            <p className="tagline">{tagline}</p>
+            <p>Original Title: {original_title}</p>
+            <p className="genres">
+              {genres.map((genre) => genre.name).join(", ")}
+            </p>
+            <p className="overview">{overview}</p>
+            <div className="movieMeta">
+              <p>{Math.ceil(popularity)} users reported watched this movie</p>
+              <div className="rating">
+                <p className="voteAverage">{vote_average.toFixed(2)}/10</p>
+                <p className="voteCount">Voted by {vote_count} users</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div>
-          Budget: {budget}
-          <Link to={homepage} target="_blank" rel="noopener noreferrer">
-            Homepage
+
+        <div className="additionalInfo">
+          <div className="infoBlock">
+            <p>Budget</p>
+            <p>${budget.toLocaleString()}</p>
+          </div>
+          <Link
+            to={homepage}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="homepageLink"
+          >
+            Visit Website
           </Link>
-          Original Language: {original_language}
-          Revenue: {revenue}
-          Runtime: {runtime}
-          Status: {status}
-          <p className="releaseDate">Released at: {formatDate(release_date)}</p>
+          <div className="infoBlock">
+            <p>Original Language</p>
+            <p>{original_language.toUpperCase()}</p>
+          </div>
+          <div className="infoBlock">
+            <p>Revenue</p>
+            <p>${revenue.toLocaleString()}</p>
+          </div>
+          <div className="infoBlock">
+            <p>Runtime</p>
+            <p>{runtime} min</p>
+          </div>
+          <div className="infoBlock">
+            <p>Status</p>
+            <p>{status}</p>
+          </div>
+          <div className="infoBlock">
+            <p>Released at</p>
+            <p>{formatDate(release_date)}</p>
+          </div>
         </div>
       </div>
     </div>

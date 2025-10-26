@@ -18,15 +18,23 @@
   & a {
     text-decoration: none;
   }
+
+  & .movieMeta p {
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 // Poster image container
 .posterImageContainer {
   position: relative;
   width: 100%;
-  aspect-ratio: 2/3; // Standard movie poster ratio
   overflow: hidden;
-  background: $color-background-hover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,13 +45,19 @@
     object-fit: cover;
     object-position: center;
     transition: transform 0.3s ease;
+    aspect-ratio: 2/3; // Standard movie poster ratio
+  }
+
+  &:has(svg) {
+    aspect-ratio: 2/3;
+    background: $color-background-hover;
   }
 
   &:hover img {
     transform: scale(1.05);
   }
 
-  &.backdrop {
+  &.backdrop img {
     aspect-ratio: 16/9;
   }
 }
@@ -89,16 +103,6 @@
   font-size: $style-text-sm-font-size;
   line-height: $style-text-sm-line-height;
   color: $color-text-secondary;
-
-  p {
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 
   @media (min-width: $breakpoint-sm) {
     gap: $spacing-space-8;
