@@ -1,48 +1,31 @@
-import { useContext, useEffect, useState, type FC } from "react";
-import customFetch from "../../../helpers/customFetch";
-import MovieContext from "../../../context/MovieContext";
+// import { useContext, useEffect, useState, type FC } from "react";
+import { type FC } from "react";
+
+// import customFetch from "../../../helpers/customFetch";
+// import MovieContext from "../../../context/MovieContext";
 import PosterImage from "../../../components/PosterImage";
 import formatDate from "../../../utils/formatDate";
 import { Link } from "@tanstack/react-router";
 import formatBudget from "../../../utils/formatBudget";
+import useMovie from "./hooks/useMovie";
+import MoviePlaceholder from "./MoviePlaceholder";
 
 type Props = {
   id: string;
 };
 
 const Movie: FC<Props> = ({ id }) => {
-  const [movie, setMovie] = useState<Movie | null>(null);
+  const { config, backdropUrl, posterUrl, movie, isLoading } = useMovie(id);
 
-  const MovieCxt = useContext(MovieContext);
+  if (isLoading) {
+    return <MoviePlaceholder />;
+  }
 
-  useEffect(() => {
-    const abortController = new AbortController();
-    const url = `https://api.themoviedb.org/3/movie/${id}`;
-
-    const options = {
-      signal: abortController.signal,
-    };
-
-    const fetchMovie = async () => {
-      const response = await customFetch(url, undefined, options);
-      console.log("Movie data:", response);
-      setMovie(response);
-    };
-
-    fetchMovie();
-
-    return () => {
-      abortController.abort();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  if (!MovieCxt.config || !movie) {
+  if (!config || !movie) {
     return null;
   }
 
   const {
-    backdrop_path,
     budget,
     genres,
     homepage,
@@ -50,7 +33,6 @@ const Movie: FC<Props> = ({ id }) => {
     original_title,
     overview,
     popularity,
-    poster_path,
     release_date,
     revenue,
     runtime,
@@ -60,18 +42,6 @@ const Movie: FC<Props> = ({ id }) => {
     vote_average,
     vote_count,
   } = movie;
-
-  const { config } = MovieCxt;
-  const { images } = config;
-  const { base_url, poster_sizes, backdrop_sizes } = images;
-  const backdropSize = backdrop_sizes.at(-2);
-
-  const posterSize = poster_sizes[3];
-
-  const backdropUrl =
-    backdrop_path && `${base_url}${backdropSize}${backdrop_path}`;
-
-  const posterUrl = poster_path && `${base_url}${posterSize}${poster_path}`;
 
   return (
     <div className="movieContainer">

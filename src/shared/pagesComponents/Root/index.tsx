@@ -12,12 +12,13 @@ const Root: FC = () => {
     shownMovies,
     totalResults,
     movieSearch,
+    isLoading,
   } = useRootHook();
 
   return (
     <section className={styles.container}>
       <Input classNames={styles.input} onSearch={onMovieSearch} />
-      <MovieList movies={shownMovies} />
+      <MovieList movies={shownMovies} isLoading={isLoading} />
       <Pagination
         key={movieSearch}
         totalResults={totalResults}

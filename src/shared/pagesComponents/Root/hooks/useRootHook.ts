@@ -11,6 +11,7 @@ const useRootHook = () => {
   const [selectedPage, setSelectedPage] = useState<number>(1);
   const [movieSearch, setMovieSearch] = useState<string>("");
   const [totalResults, setTotalResults] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const shownMovies = getResultsSlice(movies, selectedPage);
   const totalPages = Math.ceil(totalResults / 10);
@@ -22,8 +23,6 @@ const useRootHook = () => {
     const query = prepareQuery(queryParams);
     const data = await searchMovies(query, abortController);
 
-    console.log("in here oe data", { data });
-
     return data;
   };
 
@@ -31,11 +30,14 @@ const useRootHook = () => {
     if (!value) {
       return;
     }
+
+    setIsLoading(true);
     setMovieSearch(value);
     const data = await fetchMovies({ query: value }, abortController);
 
     setMovies(data.results);
     setTotalResults(data.total_results);
+    setIsLoading(false);
   };
 
   const onPageChange = async (page: number) => {
@@ -46,12 +48,14 @@ const useRootHook = () => {
     const pageToFetch = calculateFetchPage(page);
 
     if (pageToFetch !== apiPage) {
+      setIsLoading(true);
       const data = await fetchMovies(
         { query: movieSearch, page: pageToFetch },
         abortController
       );
       setMovies(data.results);
       setApiPage(pageToFetch);
+      setIsLoading(false);
     }
 
     setSelectedPage(page);
@@ -68,6 +72,7 @@ const useRootHook = () => {
     totalResults,
     totalPages,
     movieSearch,
+    isLoading,
   };
 };
 

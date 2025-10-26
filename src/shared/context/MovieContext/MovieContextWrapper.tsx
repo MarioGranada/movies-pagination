@@ -18,7 +18,6 @@ const MovieContextWrapper: FC<Props> = ({ children }) => {
 
     const fetchConfig = async () => {
       const response = await customFetch(url, undefined, options);
-      console.log("in here oe config", { response });
       setMoviesConfig((prevState) => ({
         ...prevState,
         config: { ...response },
@@ -29,15 +28,12 @@ const MovieContextWrapper: FC<Props> = ({ children }) => {
       const genresUrl = "https://api.themoviedb.org/3/genre/movie/list";
 
       const response = await customFetch(genresUrl, undefined, options);
-      console.log("in here oe genres", { response });
       const { genres } = response;
       const genresMap: GenreMap = {};
 
       genres.forEach((genre: Genre) => {
         genresMap[genre.id] = genre.name;
       });
-
-      console.log("in here oe genresMap", { genresMap });
 
       setMoviesConfig((prevState) => ({
         ...prevState,
