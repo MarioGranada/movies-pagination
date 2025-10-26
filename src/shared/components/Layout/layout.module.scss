@@ -3,6 +3,13 @@
 }
 
 .title {
-  justify-content: center;
-  text-align: center;
+  justify-content: start;
+  text-align: start;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  gap: 16px;
 }

@@ -1,12 +1,13 @@
 import type { FC } from "react";
-import EmptyPoster from "../../EmptyPoster";
+import EmptyPoster from "./EmptyPoster";
 
 type Props = {
   src?: string;
   alt: string;
+  isBackdrop?: boolean;
 };
 
-const PosterImage: FC<Props> = ({ src, alt }) => {
+const PosterImage: FC<Props> = ({ src, alt, isBackdrop }) => {
   if (!src) {
     return (
       <div className="posterImageContainer">
@@ -15,8 +16,8 @@ const PosterImage: FC<Props> = ({ src, alt }) => {
     );
   }
   return (
-    <div className="posterImageContainer">
-      <img src={src} alt={alt} />
+    <div className={`posterImageContainer ${isBackdrop ? "backdrop" : ""}`}>
+      <img src={src} alt={alt} loading="lazy" />
     </div>
   );
 };

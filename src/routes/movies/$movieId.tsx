@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import Movie from "../../shared/pagesComponents/Movies/Movie";
 
 export const Route = createFileRoute("/movies/$movieId")({
   component: RouteComponent,
@@ -6,5 +7,5 @@ export const Route = createFileRoute("/movies/$movieId")({
 
 function RouteComponent() {
   const { movieId } = Route.useParams();
-  return <div>Hello /movies/{movieId}!</div>;
+  return <Movie id={movieId} />;
 }
