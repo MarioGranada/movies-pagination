@@ -99,7 +99,7 @@ const Movie: FC<Props> = ({ id }) => {
               <p>{Math.ceil(popularity)} users reported watched this movie</p>
               <div className="rating">
                 <p className="voteAverage">{vote_average.toFixed(2)}/10</p>
-                <p className="voteCount">Voted by {vote_count} users</p>
+                <p className="voteCount">(Voted by {vote_count} users)</p>
               </div>
             </div>
           </div>
