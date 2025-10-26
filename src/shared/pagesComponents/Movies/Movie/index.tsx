@@ -4,6 +4,7 @@ import MovieContext from "../../../context/MovieContext";
 import PosterImage from "../../../components/PosterImage";
 import formatDate from "../../../utils/formatDate";
 import { Link } from "@tanstack/react-router";
+import formatBudget from "../../../utils/formatBudget";
 
 type Props = {
   id: string;
@@ -63,7 +64,7 @@ const Movie: FC<Props> = ({ id }) => {
   const { config } = MovieCxt;
   const { images } = config;
   const { base_url, poster_sizes, backdrop_sizes } = images;
-  const backdropSize = backdrop_sizes.pop();
+  const backdropSize = backdrop_sizes.at(-2);
 
   const posterSize = poster_sizes[3];
 
@@ -86,7 +87,10 @@ const Movie: FC<Props> = ({ id }) => {
           <div className="movieInfo">
             <h2 className="movieTitle">{title}</h2>
             <p className="tagline">{tagline}</p>
-            <p>Original Title: {original_title}</p>
+            <p>
+              <strong> Original Title: </strong>
+              {original_title}
+            </p>
             <p className="genres">
               {genres.map((genre) => genre.name).join(", ")}
             </p>
@@ -104,23 +108,22 @@ const Movie: FC<Props> = ({ id }) => {
         <div className="additionalInfo">
           <div className="infoBlock">
             <p>Budget</p>
-            <p>${budget.toLocaleString()}</p>
+            <p>{formatBudget(budget)}</p>
           </div>
-          <Link
-            to={homepage}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="homepageLink"
-          >
-            Visit Website
-          </Link>
+          <div className="infoBlock">
+            <p>Homepage</p>
+            <Link to={homepage} target="_blank" className="homepageLink">
+              Visit Website
+            </Link>
+          </div>
+
           <div className="infoBlock">
             <p>Original Language</p>
             <p>{original_language.toUpperCase()}</p>
           </div>
           <div className="infoBlock">
             <p>Revenue</p>
-            <p>${revenue.toLocaleString()}</p>
+            <p>{formatBudget(revenue)} </p>
           </div>
           <div className="infoBlock">
             <p>Runtime</p>
