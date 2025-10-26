@@ -8,15 +8,16 @@ type Props = {
 };
 
 const PosterImage: FC<Props> = ({ src, alt, isBackdrop }) => {
+  const classNames = `posterImageContainer ${isBackdrop ? "backdrop" : ""}`;
   if (!src) {
     return (
-      <div className="posterImageContainer">
+      <div className={classNames}>
         <EmptyPoster alt={alt} />
       </div>
     );
   }
   return (
-    <div className={`posterImageContainer ${isBackdrop ? "backdrop" : ""}`}>
+    <div className={classNames}>
       <img src={src} alt={alt} loading="lazy" />
     </div>
   );
