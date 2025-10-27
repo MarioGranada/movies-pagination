@@ -1,8 +1,4 @@
-// import { useContext, useEffect, useState, type FC } from "react";
 import { type FC } from "react";
-
-// import customFetch from "../../../helpers/customFetch";
-// import MovieContext from "../../../context/MovieContext";
 import PosterImage from "../../../components/PosterImage";
 import formatDate from "../../../utils/formatDate";
 import { Link } from "@tanstack/react-router";
@@ -62,7 +58,7 @@ const Movie: FC<Props> = ({ id }) => {
               {original_title}
             </p>
             <p className="genres">
-              {genres.map((genre) => genre.name).join(", ")}
+              {genres.map((genre: Genre) => genre.name).join(", ")}
             </p>
             <p className="overview">{overview}</p>
             <div className="movieMeta">

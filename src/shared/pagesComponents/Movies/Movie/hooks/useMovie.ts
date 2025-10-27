@@ -1,12 +1,16 @@
-import { useContext, useEffect, useState } from "react";
-import MovieContext from "../../../../context/MovieContext";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect } from "react";
 import customFetch from "../../../../helpers/customFetch";
+import { useDispatch, useSelector } from "react-redux";
+import { setLoading } from "../../../../../store/isLoadingSlice";
+import { setMovie } from "../../../../../store/moviesSlice";
 
 const useMovie = (id: string) => {
-  const [movie, setMovie] = useState<Movie | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { movie } = useSelector((state: any) => state.movies);
+  const isLoading = useSelector((state: any) => state.isLoading);
+  const { config } = useSelector((state: any) => state.config);
 
-  const MovieCxt = useContext(MovieContext);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -17,10 +21,11 @@ const useMovie = (id: string) => {
     };
 
     const fetchMovie = async () => {
-      setIsLoading(true);
+      dispatch(setLoading(true));
       const response = await customFetch(url, undefined, options);
-      setMovie(response);
-      setIsLoading(false);
+
+      dispatch(setMovie(response));
+      dispatch(setLoading(false));
     };
 
     fetchMovie();
@@ -31,16 +36,16 @@ const useMovie = (id: string) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!MovieCxt.config || !movie) {
+  if (!config || !movie) {
     return {
-      config: MovieCxt.config,
+      config,
       movie,
     };
   }
 
   const { backdrop_path, poster_path } = movie;
 
-  const { config } = MovieCxt;
+  // const { config } = MovieCxt;
   const { images } = config;
   const { base_url, poster_sizes, backdrop_sizes } = images;
   const backdropSize = backdrop_sizes.at(-2);
@@ -53,7 +58,7 @@ const useMovie = (id: string) => {
   const posterUrl = poster_path && `${base_url}${posterSize}${poster_path}`;
 
   return {
-    config: MovieCxt.config,
+    config,
     movie,
     backdropUrl,
     posterUrl,
