@@ -11,14 +11,14 @@ import {
   setSelectedPage,
   setTotalResults,
 } from "../../../../store/moviesSlice";
-import { setLoading } from "../../../../store/isLoadingSlice";
+import { setIsLoading } from "../../../../store/isLoadingSlice";
 
 const useRootHook = () => {
   const abortController = new AbortController();
 
   const dispatch = useDispatch();
   const moviesState = useSelector((state: any) => state.movies);
-  const isLoading = useSelector((state: any) => state.isLoading);
+  const { isLoading } = useSelector((state: any) => state.isLoading);
   const {
     movieList: movies,
     movieSearch,
@@ -45,13 +45,13 @@ const useRootHook = () => {
       return;
     }
 
-    dispatch(setLoading(true));
+    dispatch(setIsLoading(true));
     dispatch(setMovieSearch(value));
     const data = await fetchMovies({ query: value }, abortController);
 
     dispatch(setMovies(data.results));
     dispatch(setTotalResults(data.total_results));
-    dispatch(setLoading(false));
+    dispatch(setIsLoading(false));
   };
 
   const onPageChange = async (page: number) => {
@@ -62,7 +62,7 @@ const useRootHook = () => {
     const pageToFetch = calculateFetchPage(page);
 
     if (pageToFetch !== apiPage) {
-      dispatch(setLoading(true));
+      dispatch(setIsLoading(true));
 
       const data = await fetchMovies(
         { query: movieSearch, page: pageToFetch },
@@ -71,7 +71,7 @@ const useRootHook = () => {
       dispatch(setMovies(data.results));
 
       dispatch(setApiPage(pageToFetch));
-      dispatch(setLoading(false));
+      dispatch(setIsLoading(false));
     }
 
     dispatch(setSelectedPage(page));

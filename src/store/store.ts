@@ -6,7 +6,7 @@ import moviesReducer from "./moviesSlice";
 const store = configureStore({
   reducer: {
     config: configReducer,
-    loading: loadingReducer,
+    isLoading: loadingReducer,
     movies: moviesReducer,
   },
 });

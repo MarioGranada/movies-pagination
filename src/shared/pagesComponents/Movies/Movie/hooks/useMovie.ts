@@ -2,12 +2,12 @@
 import { useEffect } from "react";
 import customFetch from "../../../../helpers/customFetch";
 import { useDispatch, useSelector } from "react-redux";
-import { setLoading } from "../../../../../store/isLoadingSlice";
+import { setIsLoading } from "../../../../../store/isLoadingSlice";
 import { setMovie } from "../../../../../store/moviesSlice";
 
 const useMovie = (id: string) => {
   const { movie } = useSelector((state: any) => state.movies);
-  const isLoading = useSelector((state: any) => state.isLoading);
+  const { isLoading } = useSelector((state: any) => state.isLoading);
   const { config } = useSelector((state: any) => state.config);
 
   const dispatch = useDispatch();
@@ -21,11 +21,11 @@ const useMovie = (id: string) => {
     };
 
     const fetchMovie = async () => {
-      dispatch(setLoading(true));
+      dispatch(setIsLoading(true));
       const response = await customFetch(url, undefined, options);
 
       dispatch(setMovie(response));
-      dispatch(setLoading(false));
+      dispatch(setIsLoading(false));
     };
 
     fetchMovie();
@@ -45,7 +45,6 @@ const useMovie = (id: string) => {
 
   const { backdrop_path, poster_path } = movie;
 
-  // const { config } = MovieCxt;
   const { images } = config;
   const { base_url, poster_sizes, backdrop_sizes } = images;
   const backdropSize = backdrop_sizes.at(-2);
