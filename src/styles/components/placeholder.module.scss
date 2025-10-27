@@ -1,0 +1,32 @@
+.moon-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: $radius-4;
+  background-color: $color-background-tertiary;
+  will-change: background-position;
+  animation: placeholder 1.8s ease-in-out infinite;
+  background-image: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 40%,
+    $color-background-secondary 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 200% auto;
+  background-repeat: no-repeat;
+  background-position-x: -50%;
+}
+
+.moviePosterPlaceholder {
+  aspect-ratio: 2/3;
+}
+
+@keyframes placeholder {
+  0% {
+    background-position: 150%;
+  }
+  100% {
+    background-position: -50%;
+  }
+}

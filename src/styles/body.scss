@@ -1,0 +1,26 @@
+& {
+  @import "root-variables";
+  @import "./components/input.scss";
+  @import "./components/hint.scss";
+  @import "./components/pagination.scss";
+  @import "./components/movieList.module.scss";
+  @import "./components/moviePoster.module.scss";
+  @import "./components/movie.module.scss";
+  @import "./components/placeholder.module.scss";
+
+  font-family: $font-default;
+  background-color: $color-background-primary;
+  color: $color-text-primary;
+  padding: $spacing-space-16;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}

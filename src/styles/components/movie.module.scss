@@ -1,0 +1,166 @@
+.movieContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.backdropSection {
+  width: 100%;
+
+  img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: $radius-16;
+  }
+}
+
+.movieDetails {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-space-16;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.movieData {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-space-16;
+  flex-direction: column;
+
+  @media (min-width: $breakpoint-xs) {
+    flex-direction: row;
+  }
+}
+
+.posterSection {
+  //   flex-shrink: 0;
+  //   width: 300px;
+
+  width: 100%;
+  max-width: 300px;
+  justify-self: center;
+  place-self: center;
+
+  @media (min-width: $breakpoint-xs) {
+    // width: 100%;
+    // max-width: 300px;
+    // justify-self: center;
+    // place-self: center;
+    flex-shrink: 0;
+    width: 300px;
+    place-self: unset;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: $radius-16;
+    box-shadow: $spacing-space-16;
+  }
+}
+
+.movieInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-space-16;
+}
+
+.movieTitle {
+  font-size: $text-48;
+  line-height: $text-48;
+  overflow: visible;
+  font-weight: $font-weight-bold;
+  margin: 0;
+}
+
+.tagline {
+  font-style: italic;
+  color: $color-text-secondary;
+  font-size: $text-24;
+}
+
+.genres {
+  font-weight: $font-weight-medium;
+}
+
+.overview {
+  line-height: 1.6;
+}
+
+.movieMeta {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-space-16;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: $spacing-space-16;
+}
+
+.voteAverage {
+  font-size: $text-48;
+  font-weight: $font-weight-bold;
+}
+
+.voteCount {
+  color: $color-text-secondary;
+}
+
+.additionalInfo {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: $spacing-space-16;
+  justify-content: flex-start;
+
+  @media (min-width: $breakpoint-md) {
+    gap: $spacing-space-32;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    justify-content: space-between;
+  }
+}
+
+.infoBlock {
+  gap: $spacing-space-8;
+  display: flex;
+  flex-direction: column;
+
+  p:first-child {
+    font-weight: $font-weight-medium;
+    color: $color-text-secondary;
+    font-size: $text-14;
+    letter-spacing: 0.5px;
+  }
+
+  p:last-child {
+    font-weight: $font-weight-medium;
+  }
+}
+
+.homepageLink {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: $color-text-info;
+  font-weight: $font-weight-medium;
+
+  &:hover {
+    color: $color-text-link;
+  }
+}
+
+.moviePlaceholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: $radius-16;
+}

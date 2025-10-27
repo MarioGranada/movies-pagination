@@ -1,0 +1,116 @@
+@use "sass:math";
+
+.moon-input {
+  display: flex;
+  width: 100%;
+  outline: none;
+  border-color: transparent;
+  align-items: center;
+  transition:
+    box-shadow 150ms ease-in-out,
+    opacity 150ms ease-in-out,
+    background-color 150ms ease-in-out;
+  height: $spacing-space-40;
+  border-radius: $component-forms-radius-md;
+  font-family: $font-default;
+  font-weight: $font-weight-medium;
+  font-size: $style-text-md-font-size;
+  line-height: $style-text-md-line-height;
+  box-shadow: inset 0 0 0 $component-input-fill-stroke
+    $component-input-fill-border;
+  color: $component-input-fill-text-default;
+  background-color: $component-input-fill-background;
+}
+.moon-input::-moz-placeholder {
+  color: $component-input-fill-text-placeholder;
+}
+.moon-input::placeholder {
+  color: $component-input-fill-text-placeholder;
+}
+.moon-input:-moz-read-only {
+  cursor: not-allowed;
+}
+.moon-input:read-only,
+.moon-input:disabled {
+  cursor: not-allowed;
+}
+.moon-input:disabled {
+  opacity: $style-opacity-disabled;
+}
+.moon-input:not(:-moz-read-only, :disabled):hover {
+  box-shadow: inset 0 0 0 $spacing-stroke-1 $color-border-primary;
+  background-color: $color-background-hover;
+}
+.moon-input:not(:read-only, :disabled):hover {
+  box-shadow: inset 0 0 0 $spacing-stroke-1 $color-border-primary;
+  background-color: $color-background-hover;
+}
+.moon-input:not(:-moz-read-only, :disabled):focus {
+  box-shadow: inset 0 0 0 $spacing-stroke-1 $color-border-info;
+}
+.moon-input:not(:read-only, :disabled):focus {
+  box-shadow: inset 0 0 0 $spacing-stroke-1 $color-border-info;
+}
+.moon-input :where(svg, .moon-icon) {
+  color: $color-icon-primary;
+  width: $spacing-space-20;
+  height: $spacing-space-20;
+}
+.moon-input.moon-input-sm {
+  height: $spacing-space-32;
+  padding: 0 $spacing-space-8;
+  border-radius: $component-forms-radius-sm;
+  font-family: $font-default;
+  font-weight: $font-weight-medium;
+  font-size: $style-text-md-font-size;
+  line-height: $style-text-md-line-height;
+}
+.moon-input.moon-input-sm :where(svg, .moon-icon) {
+  width: $spacing-space-16;
+  height: $spacing-space-16;
+}
+.moon-input.moon-input-lg {
+  height: $spacing-space-48;
+  padding: 0 $spacing-space-12;
+  border-radius: $component-forms-radius-lg;
+  font-family: $font-default;
+  font-weight: $font-weight-medium;
+  font-size: $style-text-md-font-size;
+  line-height: $style-text-md-line-height;
+}
+.moon-input.moon-input-lg :where(svg, .moon-icon) {
+  width: $spacing-space-20;
+  height: $spacing-space-20;
+}
+.moon-input.moon-input-xl {
+  height: $spacing-space-56;
+  padding: 0 $spacing-space-16;
+  border-radius: $component-forms-radius-xl;
+  font-family: $font-default;
+  font-weight: $font-weight-medium;
+  font-size: $style-text-lg-font-size;
+  line-height: $style-text-lg-line-height;
+}
+.moon-input.moon-input-xl :where(svg, .moon-icon) {
+  width: $spacing-space-20;
+  height: $spacing-space-20;
+}
+.moon-input.moon-input-outline {
+  box-shadow: inset 0 0 0 $component-input-outline-stroke
+    $component-input-outline-border;
+  color: $component-input-outline-text-default;
+  background-color: $component-input-outline-background;
+}
+.moon-input.moon-input-outline::-moz-placeholder {
+  color: $component-input-outline-text-placeholder;
+}
+.moon-input.moon-input-outline::placeholder {
+  color: $component-input-outline-text-placeholder;
+}
+.moon-input.moon-input-error {
+  box-shadow: inset 0 0 0 $spacing-stroke-1 $color-border-negative;
+}
+.moon-input.moon-input-error:hover,
+.moon-input.moon-input-error:focus {
+  box-shadow: inset 0 0 0 $spacing-stroke-1 $color-border-negative;
+}

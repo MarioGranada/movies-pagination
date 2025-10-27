@@ -1,0 +1,69 @@
+.movieGrid {
+  display: grid;
+  gap: $spacing-space-20;
+  padding: $spacing-space-16;
+  width: 100%;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  @media (min-width: $breakpoint-sm) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-space-24;
+    padding: $spacing-space-20;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-space-32;
+    padding: $spacing-space-24;
+    max-width: 1200px;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(5, 1fr);
+    gap: $spacing-space-32;
+    padding: $spacing-space-32;
+    max-width: 1400px;
+  }
+
+  @media (min-width: $breakpoint-xl) {
+    gap: $spacing-space-40;
+    padding: $spacing-space-40 $spacing-space-32;
+    max-width: 1600px;
+  }
+}
+
+.loadingGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-space-20;
+  padding: $spacing-space-16;
+
+  @media (min-width: $breakpoint-sm) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.loadingItem {
+  background: $color-background-hover;
+  border-radius: $component-button-radius-md;
+  aspect-ratio: 2/3;
+  animation: pulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}

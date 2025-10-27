@@ -1,0 +1,95 @@
+.moon-pagination {
+  align-items: center;
+  gap: $spacing-space-6;
+  display: flex;
+}
+
+.moon-pagination :where(.moon-pagination-item).moon-pagination-item-active {
+  background-color: $component-pagination-background-active;
+  color: $component-pagination-text-active;
+}
+
+.moon-pagination :where(.moon-pagination-item) {
+  height: $spacing-space-32;
+  width: $spacing-space-32;
+  border-radius: $component-button-radius-sm;
+  cursor: pointer;
+  background-color: $component-icon-button-fill-background;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+  display: inline-flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.moon-pagination :where(.moon-pagination-item) {
+  font-family: $font-default;
+  font-weight: $font-weight-medium;
+  font-size: $style-text-sm-font-size;
+  line-height: $style-text-sm-line-height;
+  background-color: $component-pagination-background-default;
+  color: $component-pagination-text-default;
+}
+
+.moon-pagination :active:where(.moon-pagination-item) {
+  transform: scale(0.95);
+}
+
+.moon-pagination :where(.moon-pagination-item):after {
+  content: "";
+  pointer-events: none;
+  background-color: $color-background-transparent;
+  transition: background-color 0.15s ease-in-out;
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+:not(:disabled):not([aria-disabled="true"]):hover:where(
+    .moon-pagination-item
+  ):after {
+  background-color: $color-background-hover;
+}
+
+.moon-pagination :where(.moon-pagination-control) {
+  height: $spacing-space-32;
+  width: $spacing-space-32;
+  border-radius: $component-button-radius-sm;
+  background-color: $component-icon-button-soft-background;
+  box-shadow: inset 0 0 0 $component-icon-button-soft-stroke
+    $component-icon-button-soft-border;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+  display: inline-flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.moon-pagination :where(.moon-pagination-control):after {
+  content: "";
+  pointer-events: none;
+  background-color: $color-background-transparent;
+  transition: background-color 0.15s ease-in-out;
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+.moon-pagination :active:where(.moon-pagination-control) {
+  transform: scale(0.95);
+}
+
+.moon-pagination [aria-disabled="true"]:where(.moon-pagination-control) {
+  cursor: not-allowed;
+  opacity: $style-opacity-disabled;
+}
+
+.moon-pagination
+  :not(:disabled):not([aria-disabled="true"]):hover:where(
+    .moon-pagination-control
+  ):after {
+  background-color: $color-background-hover;
+}
