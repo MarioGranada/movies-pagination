@@ -47,3 +47,9 @@ type ProductionCountry = {
 };
 
 type GenreMap = Record<number, string>;
+
+type MovieCxt = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  config: any;
+  genres: GenreMap;
+};

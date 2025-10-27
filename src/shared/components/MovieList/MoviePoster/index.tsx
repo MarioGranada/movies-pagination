@@ -1,21 +1,21 @@
-import { useContext, type FC } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { type FC } from "react";
 import { Link } from "@tanstack/react-router";
-import MovieContext from "../../../context/MovieContext";
 import PosterImage from "../../PosterImage";
 import formatDate from "../../../utils/formatDate";
+import { useSelector } from "react-redux";
 
 type Props = {
   movie: Movie;
 };
 
 const MoviePoster: FC<Props> = ({ movie }) => {
-  const MovieCxt = useContext(MovieContext);
+  const { config, genres } = useSelector((state: any) => state.config);
 
-  if (!MovieCxt.config) {
+  if (!config) {
     return null;
   }
 
-  const { config, genres } = MovieCxt;
   const { images } = config;
   const { base_url, poster_sizes } = images;
   const posterSize = poster_sizes[3];
