@@ -1,17 +1,31 @@
-import { useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import prepareQuery from "../../../utils/prepareQuery";
 import searchMovies from "../../../helpers/searchMovies";
 import calculateFetchPage from "../utils/calculateFetchPage";
 import getResultsSlice from "../utils/getResultsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setApiPage,
+  setMovies,
+  setMovieSearch,
+  setSelectedPage,
+  setTotalResults,
+} from "../../../../store/moviesSlice";
+import { setLoading } from "../../../../store/isLoadingSlice";
 
 const useRootHook = () => {
   const abortController = new AbortController();
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [apiPage, setApiPage] = useState<number>(1);
-  const [selectedPage, setSelectedPage] = useState<number>(1);
-  const [movieSearch, setMovieSearch] = useState<string>("");
-  const [totalResults, setTotalResults] = useState<number>(0);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
+  const moviesState = useSelector((state: any) => state.movies);
+  const isLoading = useSelector((state: any) => state.isLoading);
+  const {
+    movieList: movies,
+    movieSearch,
+    apiPage,
+    selectedPage,
+    totalResults,
+  } = moviesState;
 
   const shownMovies = getResultsSlice(movies, selectedPage);
   const totalPages = Math.ceil(totalResults / 10);
@@ -31,13 +45,13 @@ const useRootHook = () => {
       return;
     }
 
-    setIsLoading(true);
-    setMovieSearch(value);
+    dispatch(setLoading(true));
+    dispatch(setMovieSearch(value));
     const data = await fetchMovies({ query: value }, abortController);
 
-    setMovies(data.results);
-    setTotalResults(data.total_results);
-    setIsLoading(false);
+    dispatch(setMovies(data.results));
+    dispatch(setTotalResults(data.total_results));
+    dispatch(setLoading(false));
   };
 
   const onPageChange = async (page: number) => {
@@ -48,17 +62,19 @@ const useRootHook = () => {
     const pageToFetch = calculateFetchPage(page);
 
     if (pageToFetch !== apiPage) {
-      setIsLoading(true);
+      dispatch(setLoading(true));
+
       const data = await fetchMovies(
         { query: movieSearch, page: pageToFetch },
         abortController
       );
-      setMovies(data.results);
-      setApiPage(pageToFetch);
-      setIsLoading(false);
+      dispatch(setMovies(data.results));
+
+      dispatch(setApiPage(pageToFetch));
+      dispatch(setLoading(false));
     }
 
-    setSelectedPage(page);
+    dispatch(setSelectedPage(page));
   };
 
   return {
