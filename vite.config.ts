@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, type UserConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
 
@@ -15,4 +15,14 @@ export default defineConfig({
       },
     }),
   ],
-});
+  test: {
+    environment: "jsdom",
+    globals: true,
+    setupFiles: "./src/tests/setup.ts",
+    coverage: {
+      enabled: true,
+      provider: "v8", // or 'istanbul'
+      include: ["src/**/*.{ts,tsx}"],
+    },
+  },
+} as UserConfig);
