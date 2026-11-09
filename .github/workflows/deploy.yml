@@ -1,0 +1,49 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gh-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      # Inlined into the client bundle at build time (public by design).
+      VITE_ACCESS_TOKEN: ${{ secrets.VITE_ACCESS_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Skip deploy when the VITE_ACCESS_TOKEN secret is missing
+        if: env.VITE_ACCESS_TOKEN == ''
+        run: echo "::warning::VITE_ACCESS_TOKEN secret not set; skipping deploy so the live site is not replaced by a broken build."
+
+      - uses: actions/setup-node@v4
+        if: env.VITE_ACCESS_TOKEN != ''
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+        if: env.VITE_ACCESS_TOKEN != ''
+
+      - run: npm run build
+        if: env.VITE_ACCESS_TOKEN != ''
+
+      - name: SPA fallback for deep links
+        if: env.VITE_ACCESS_TOKEN != ''
+        run: cp dist/index.html dist/404.html
+
+      - uses: peaceiris/actions-gh-pages@v4
+        if: env.VITE_ACCESS_TOKEN != ''
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages

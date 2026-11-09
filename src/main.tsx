@@ -8,7 +8,10 @@ import { routeTree } from "./routeTree.gen";
 import { Provider } from "react-redux";
 import store from "./store/store";
 
-const router = createRouter({ routeTree });
+const router = createRouter({
+  routeTree,
+  basepath: import.meta.env.BASE_URL.replace(/\/$/, "") || "/",
+});
 
 const rootElement = document.getElementById("root")!;
 

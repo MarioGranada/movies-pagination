@@ -4,6 +4,14 @@ A movie discovery app powered by the TMDB API. Users can search for movies, page
 
 The project focuses on type-safe routing with TanStack Router, Redux Toolkit state, custom pagination logic, and a small SCSS design system with light and dark themes.
 
+## Live demo
+
+| | |
+| --- | --- |
+| **Live site** | https://mariogranada.github.io/movies-pagination/ |
+| **Repository** | https://github.com/MarioGranada/movies-pagination |
+| **Portfolio summary** | TMDB movie search in React 19 + TypeScript with TanStack Router, Redux Toolkit pagination, movie detail pages and light/dark SCSS themes. |
+
 ## Features
 
 - Search movies through the TMDB API.
@@ -106,6 +114,7 @@ TanStack Router generates `src/routeTree.gen.ts` from `src/routes/`. The root ro
 
 ## Deployment
 
+- **Live:** `.github/workflows/deploy.yml` builds the app on every push to the default branch and publishes `dist/` (plus a `404.html` SPA fallback) to the `gh-pages` branch, which GitHub Pages serves at https://mariogranada.github.io/movies-pagination/.
 - Target: GitHub Actions builds the Vite app and publishes `dist/` to GitHub Pages. Set the Vite `base` to the repository path and add a SPA fallback (for example a copied `404.html`) so deep links work.
 - Store `VITE_ACCESS_TOKEN` as a GitHub Actions secret and expose it to the build step. The token is inlined into the client bundle.
 - Vercel is a simpler alternative because it handles SPA rewrites automatically.
